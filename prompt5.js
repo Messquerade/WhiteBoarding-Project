@@ -55,7 +55,7 @@ function partition(array, start, end) {
       pivotIndex++;
     }
   }
-  // put the pivot in the middle?
+  // put the pivot in the middle? Switch Swap
   [array[pivotIndex], array[end]] = [array[end], array[pivotIndex]];
   return pivotIndex;
 }

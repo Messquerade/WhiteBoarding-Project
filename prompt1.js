@@ -35,3 +35,26 @@ function makeURL(message) {
 console.log(makeURL("Jasmine Ann Jones"));
 console.log(makeURL(33));
 console.log(makeURL("hi"));
+
+// recursively
+
+function recursiveMakeURL(message){
+  // termination case
+  if(typeof message != "string") {
+    return "error: Please enter a string input";
+  }
+  // base case
+  if(!message.includes(" ")) {
+    return message;
+  } else {
+    // find space
+    const spaceIndex = message.indexOf(" ");
+    // call function again with first space replaced by %20
+    return recursiveMakeURL(message.substring(0, spaceIndex) + "%20" + message.substring(spaceIndex + 1));
+  }
+}
+
+console.log(recursiveMakeURL("Jasmine Ann Jones"));
+console.log(recursiveMakeURL(33));
+console.log(recursiveMakeURL("hi"));
+console.log(recursiveMakeURL(" spaces my man "));
