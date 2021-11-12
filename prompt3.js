@@ -18,7 +18,7 @@ function compress(message) {
       if(counter === 1){
         newMessage += message[i];
       } else {
-        newMessage += counter + message[i];
+        newMessage += counter.toString() + message[i];
         counter = 1;
       }
     }
@@ -27,3 +27,25 @@ function compress(message) {
 }
 
 console.log(compress("aaabccdddda"));
+
+// now recursively
+
+function recursivelyCompress(message, counter) {
+  if(typeof message != "string") {
+    return "error: Please enter a string input";
+  }
+  if(message === "") {
+    return "";
+  }
+  if(message[0] === message[1]) {
+    return recursivelyCompress(message.substring(1), counter + 1);
+  } else {
+    if(counter === 1) {
+      return message[0].concat(recursivelyCompress(message.substring(1), counter));
+    } else {
+      return counter.toString().concat(message[0]).concat(recursivelyCompress(message.substring(1), 1));
+    }
+  }
+}
+
+console.log(recursivelyCompress("aaabccdddda", 1));
