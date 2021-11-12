@@ -32,7 +32,13 @@ function dedupe(array) {
 console.log(dedupe([7, 9, "hi", 12, "hi",  7, 53]));
 
 // now use filter()
+// so indexOf() gives you the first instance of that element in an array. So if an element's index is not equal to the indexOf() that element, it is a duplicate
 
 function dedupeWithFilter(array) {
-  // why is this harder???
+  const newArray = array.filter((element, index) => {
+    return array.indexOf(element) === index;
+  });
+  return newArray;
 }
+
+console.log(dedupeWithFilter([7, 9, "hi", 12, "hi",  7, 53]));
