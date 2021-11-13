@@ -1,0 +1,50 @@
+// Question #3: Compressing Strings
+// Write an algorithm that takes a string with repeated characters and compresses them, using a number to show how many times the repeated character has been compressed. For instance, aaa would be written as 3a. Solve the problem with and without recursion.
+
+// Example
+// Input: "aaabccdddda"
+
+// Output: "3ab2c4da"
+
+// function is going to take in a sting of characters, if there are repeated characters, it will replace the repeats with a number that represents how many times it was repeated
+// does it always take a string?
+
+// set counter = 1
+// return new message, set it as ""
+// taking in a message, loop through each character in the string and current index character is equal to the next index character, we will increment a counter.
+// if they are not equal, we will check the counter, if the counter is 1, add that index character to our new newMessage
+// if not counter not 1, add the counter and character, set counter back to one
+
+function compress(message) {
+  let counter = 1;
+  let newMessage = "";
+  for(let i = 0; i < message.length; i++) {
+    if(message[i] === message[i + 1]) {
+      counter++;
+    } else {
+      if(counter === 1) {
+        newMessage += message[i];
+      } else {
+        newMessage += counter.toString() + message[i];
+        counter = 1;
+      }
+    }
+  }
+  return newMessage;
+}
+
+function recursiveCompress(message, counter) {
+  if(message === "") {
+    return "";
+  }
+
+  if(message[0] === message[1]) {
+    return recursiveCompress(message.substring(1), counter + 1);
+  } else {
+    if(counter === 1) {
+      return message[0].concat(recursiveCompress(message.substring(1), counter));
+    } else {
+      return counter.toString().concat(message[0]).concat(recursiveCompress(message.substring(1), 1);
+    }
+  }
+}
